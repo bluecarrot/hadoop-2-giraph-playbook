@@ -8,10 +8,6 @@
     stat:
       path: "{{ hadoop_home }}"
     register: hadoop_stat
-  - name: Create hadoop home folder
-    file:
-      path: '{{ hadoop_home }}'
-      state: directory
   - name: Home path not found
     fail:
       msg: '{{ hadoop_home }}' not found
@@ -56,6 +52,3 @@
     stat:
       path: "/data/{{ ansible_user_id }}-giraph/nameNode/current/VERSION"
     register: namenode_fs
-  - name: Format NameNode FS system if required
-    shell: "{{ hadoop_home }}/bin/hdfs namenode -format"
-    when: namenode_fs.stat.exists == false and ansible_hostname == "distgraph"

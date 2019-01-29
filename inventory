@@ -1,0 +1,6 @@
+[namenode]
+master
+
+[datanode]
+slave1
+slave2
